@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of PDFs</title>
+</head>
+<body>
+    <h1>Form</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ fm.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+    <h1>List of PDFs</h1>
+    <ul>
+        {% for pdf in fp %}
+            <li><a href="{% url 'see_pdf' pdf.id %}">{{ pdf.title }}</a></li>
+        {% empty %}
+            <li>No PDFs available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
